@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  cursor: url("images/cursor.png"), default;
+}
+
+body {
+  background: url("images/body-background-star.png") rgb(212, 192, 147);
+  background-size: 3%;
+  font-family: fira;
+}
+
+/* HEADER */
+
+#main-header {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+
+  background: url("images/header-fence.png") rgb(195, 147, 56);
+  background-size: 60%;
+  background-position: 30%;
+  border-bottom: 7px solid brown;
+  padding: 0.7%;
+  color: white;
+}
+
+/* left name */
+#main-header-name {
+  background-color: rgb(219, 170, 79);
+  padding: 0 1% 0 1%;
+  text-align: center;
+  font-size: 540%;
+  border: 7px dashed;
+  opacity: 0.9;
+}
+
+/* center input */
+#main-header-goods {
+  cursor: url("images/cursor.png"), default;
+  display: inline;
+  font-size: 240%;
+  background-color: brown;
+  padding: 1%;
+}
+
+#main-header-goods-search {
+  font-size: 65%;
+  background-color: antiquewhite;
+  font-family: fira;
+  opacity: 0.8;
+}
+
+/* right menu */
+#main-header-menu {
+  text-align: center;
+  height: 100%;
+  width: 10%;
+  padding: 1% 0.5% 1.5% 0.5%;
+  margin-top: 0.5%;
+  font-size: 100%;
+  font-weight: bold;
+  background-color: brown;
+  border-radius: 18%;
+  z-index: 1;
+}
+
+#main-header-menu-checkbox {
+  display: none;
+}
+
+#main-header-menu-checkbox:checked ~ #main-header-menu-label {
+  background: url("images/menu-close.webp") no-repeat right center;
+  background-size: 26%;
+}
+
+#main-header-menu-checkbox:checked ~ #main-header-menu-dropdown {
+  max-height: 250%;
+  border: 7px solid brown;
+  padding: 2%;
+}
+
+
+#main-header-menu-label {
+  font-size: 250%;
+  cursor: pointer;
+  background: url("images/menu-open.png") no-repeat right center;
+  background-size: 26%;
+  padding-right: 35%;
+}
+
+/* dropdown menu */
+#main-header-menu-dropdown {
+  position: absolute;
+  text-align: left;
+  right: 0;
+  margin-right: 1.5%;
+  font-size: 230%;
+  top: 100%;
+  padding-right: 3%;
+  background-color: rgb(219, 170, 79);
+  max-height: 0;
+  overflow: hidden;
+}
+
+#main-header-menu-dropdown ul {
+  list-style-type: disc;
+}
+
+#main-header-menu-dropdown ul li {
+  padding-top: 5%;
+}
+
+.menu-dropdown-links {
+  color: white;
+}
+
+/* MAIN CONTENTT */
+
+#main-content {
+  padding-top: 200px;
+  min-height: 1000px;
+}
+
+#goods-area {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.goods {
+  font-family: neucha;
+  font-size: 180%;
+  width: 20%;
+  height: 35%;
+  margin: 4%;
+  background: rgb(249,255,0);
+  background: radial-gradient(circle, rgba(249,255,0,1) 14%, rgba(255,192,0,1) 48%, rgba(242,149,6,1) 96%);
+  border: 9px outset rgb(180, 105, 20);
+  opacity: 0.9;
+}
+
+.goods-image {
+  width: 60%;
+  height: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  
+}
+
+.goods-description {
+  text-align: center;
+  margin-top: 10%;
+  padding: 0 1% 0  2%;
+}
+
+
+/* FOOTER */
+
+#main-footer {
+  position: static;
+  bottom: 0;
+  font-family: vallkorn;
+  background: url("images/footer-wood.jpg");
+  padding-top: 1%;
+  padding-right: 1%;
+  text-align: right;
+  font-size: 180%;
+  color: white;
+}
+
+/* display orientation */
+
+@media screen and (max-width: 1000px) {
+  #main-header {
+    flex-direction: column;
+    background-size: 120%;
+  }
+
+  #main-header > * {
+    margin: 1%;
+  }
+
+  #main-header-name {
+    font-size: 300%;
+  }
+
+  .goods {
+    height: 70%;
+    width: 35%
+  }
+
+  #main-header-menu-dropdown {
+    width: 93%;
+    left: 0;
+    margin: 0;
+  }
+
+  #main-header-menu-label {
+    font-size: 150%;
+  }
+
+  #main-header-menu-dropdown > ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+  }
+  
+}
+
+@media screen and (max-width: 800px) {
+  #main-header-menu-label {
+    font-size: 100%;
+  }
+
+  #main-header-goods-search {
+    font-size: 55%;
+    margin-bottom: 2%;
+  }
+
+  #main-header-menu-dropdown > ul {
+    font-size: 60%;
+  }
+
+  #goods-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .goods {
+    height: 70%;
+    width: 40%
+  }
+}
+
+
+/* FONTS */
+
+@font-face {
+  font-family: fira;
+  src: url("fonts/FiraSansExtraCondensed-Black.ttf");
+}
+
+@font-face {
+  font-family: vallkorn;
+  src: url("fonts/Vollkorn-Black.ttf");
+}
+
+@font-face {
+  font-family: neucha;
+  src: url("fonts/Neucha-Regular.ttf");
+}
