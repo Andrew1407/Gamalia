@@ -1,0 +1,109 @@
+body {
+  background: url("images/cart-background.webp") rgb(212, 192, 147);
+  background-size: 7%;
+  font-family: fira;
+}
+
+#cart-order-area {
+  padding-top: 200px;
+  min-height: 1000px;
+}
+
+#ordered-goods {
+  min-height: 900px;
+}
+
+#submit-order {
+  bottom: 0;
+  text-align: right;
+}
+
+#submit-order-button{
+  padding: 1% 2% 1% 2%;
+  font-family: vallkorn;
+  font-size: 170%;
+  background-color: rgb(219, 170, 79);
+  border: 6px outset brown;
+  color: rgb(165, 79, 79);
+  text-decoration: none;
+}
+
+/* ordering form */
+#submit-form {
+  position: fixed;
+  z-index: 2;
+  top: 13%;
+  left: 35%;
+  
+  text-align: left;
+  padding: 3%;
+  background-color: rgb(212, 192, 147);
+  font-size: 260%;
+  border: 10px dashed rgb(42, 165, 42);
+  display: none;
+}
+
+/* open form */
+#submit-form:target {
+  display: flex;
+  flex-direction: column;
+}
+
+#submit-form input {
+  font-family: vallkorn;
+  font-size: 60%;
+  width: 100%;
+  background-color: rgb(219, 170, 79);
+  border: 4px outset brown;
+}
+
+.form-input {
+  margin: 2%;
+  border: 6px dotted brown;
+  padding: 5%;
+  padding-right: 10%;
+}
+
+#form-ok, #form-cancel{
+  padding: 1% 2% 1% 2%;
+  font-family: vallkorn;
+  background-color: rgb(219, 170, 79);
+  color: rgb(165, 79, 79);
+}
+
+#form-ok {
+  border: 10px outset brown;
+  font-size: 170%;
+  margin-bottom: 3%;
+  margin-top: 4%;
+}
+
+#form-cancel {
+  border: 4px outset brown;
+  text-align: center;
+  font-size: 60%;
+  text-decoration: none;
+}
+
+/* disolay orientation */
+
+@media screen and (max-width: 1300px) {
+  #submit-form {
+    top: 10%;
+    left: 24%;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  #submit-form {
+    top: 7%;
+    left: 10%;
+  }
+}
+
+
+@font-face {
+  font-family: vallkorn;
+  src: url("fonts/Vollkorn-Black.ttf");
+}
+
