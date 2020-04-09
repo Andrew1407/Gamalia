@@ -101,6 +101,12 @@ body {
   }
 }
 
+@media screen and (max-width: 620px) {
+  #submit-order {
+    text-align: center;
+  }
+}
+
 
 @font-face {
   font-family: vallkorn;

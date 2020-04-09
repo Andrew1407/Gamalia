@@ -1,0 +1,13 @@
+@media screen and (min-width: 620px) {
+  #submit-order-button:hover,
+  #form-cancel:hover, #form-ok:hover {
+    color: crimson;
+    border-color: crimson;
+    background: orange;
+  }
+
+  #form-dep:hover, #form-dest:hover, #form-email:hover {
+    border-color: crimson;
+    background: orange;
+  }
+}

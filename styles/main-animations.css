@@ -1,0 +1,60 @@
+/* animations for any device */
+
+#main-header-name {
+  animation-name: nameShining;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes nameShining {
+  0%, 100% {
+    background: rgb(219, 170, 79);
+  }
+  25%,50% {
+    background: brown;
+  }
+}
+
+/* animations for desktop device */
+
+@media screen and (min-width: 620px) {
+#main-footer a:hover {
+  color: aqua;
+}  
+
+.menu-dropdown-links:hover{
+  color: crimson;
+}  
+
+#main-header-menu-dropdown ul li:hover {
+    color: crimson;
+    text-decoration: underline;
+  }  
+
+  #main-header-name:hover {
+    opacity: 1;
+  }  
+}
+
+@media screen and (min-width: 1000px) {
+  .goods:hover {
+    box-shadow: 10px 10px brown;
+    width: 25%;
+  }
+}
+
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  .goods:hover {
+    box-shadow: 10px 10px brown;
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 620px) and (max-width: 800px) {
+  .goods:hover {
+    box-shadow: 10px 10px brown;
+    width: 50%;
+  } 
+}
