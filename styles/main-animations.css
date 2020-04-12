@@ -11,7 +11,7 @@
   0%, 100% {
     background: rgb(219, 170, 79);
   }
-  25%,50% {
+  50% {
     background: brown;
   }
 }

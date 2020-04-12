@@ -4,6 +4,7 @@
 }
 
 body {
+  opacity: 0;
   background: url("images/body-background-star.png") rgb(212, 192, 147);
   background-size: 3%;
   font-family: fira;
