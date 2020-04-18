@@ -150,6 +150,7 @@ body {
   background: radial-gradient(circle, rgba(249,255,0,1) 14%, rgba(255,192,0,1) 48%, rgba(242,149,6,1) 96%);
   border: 9px outset rgb(180, 105, 20);
   opacity: 0.9;
+  display: block;
 }
 
 .goods-image {
@@ -272,12 +273,16 @@ body {
   }
 
   .goods {
-    font-size: 0;
+    /* font-size: 0; */
     border: 5px outset rgb(180, 105, 20);
   }
 
   .goods-image {
     margin-bottom: 5%;
+  }
+
+  .goods-description {
+    display: none;
   }
 
   #main-footer {
