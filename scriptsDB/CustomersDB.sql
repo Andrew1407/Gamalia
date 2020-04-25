@@ -1,0 +1,11 @@
+CREATE DATABASE CustomersDB DEFAULT CHARSET cp1251;
+
+CREATE TABLE Customers (
+  id INT AUTO_INCREMENT,
+  email VARCHAR(40) NOT NULL,
+  initials VARCHAR(40) NOT NULL,
+  shop_id INT DEFAULT 1,
+  phone_number VARCHAR(15) NOT NULL,
+  reg_date DATETIME DEFAULT now(),
+  PRIMARY KEY(id)
+);
