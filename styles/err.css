@@ -1,0 +1,38 @@
+body {
+  background: url("images/body-background-mushroom2.png") rgb(212, 192, 147);
+  background-size: 8%;
+}
+
+#main-info {
+  min-height: 500px;
+  margin-bottom: 13%;
+  padding-bottom: 4%;
+}
+
+#main-info {
+  background-color: rgb(131, 31, 29); /*rgb(190, 45, 42);*/
+  border-color: rgb(255, 255, 255);
+  color: white;
+}
+
+.form-header, .user-info {
+  background-color: rgb(190, 45, 42);
+  border-color: rgb(255, 255, 255);
+  color: white;
+}
+
+.form-header {
+  padding: 5%;
+  margin-bottom: 5%;
+}
+
+.personal-header-name::before {
+  content: url("images/err1.png");
+  zoom: 40%;
+  display: block;
+}
+
+.user-info-img {
+  margin: 0 auto;
+  display: block;
+}

@@ -21,10 +21,10 @@ INSERT INTO CustomersDB.Customers (initials, email, phone_number) VALUES
   ("Дімаш Кудайбергенов", "kudaibergenov.dimash@gmail.com", "72777797924");
 
 -- insert values for `Goods` table
-INSERT INTO ShopDB.Goods (item_name, prise, categories, item_image) VALUES
+INSERT INTO ShopDB.Goods (item_name, price, categories, item_image) VALUES
   ("Диво-капці", 88, "взуття, домашнє, одяг", "styles/images/goods.jpg"),
   ("Костюм телепузика", 226, "одяг, костюм, розваги, для дітей", "styles/images/goods2.jpg"),
-  ("диск \"Зелений слоник", 1275, "фільми, драма, мистецтво", "styles/images/goods3.jpg"),
+  ("диск \"Зелений слоник", 1275, "фільми, драма, мистецтво", "styles/images/goods3.webp"),
   ("футболка \"Титанік", 79, "фільми, одяг, ганчірка для швабри", "styles/images/goods4.jpg");
 
 -- insert values for `Orders` table

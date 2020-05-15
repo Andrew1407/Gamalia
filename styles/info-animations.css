@@ -1,0 +1,32 @@
+#main-info-name {
+  animation-name: nameShining;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes nameShining {
+  0%, 100% {
+    background: rgb(219, 170, 79);
+  }
+  50% {
+    background: brown;
+  }
+}
+
+@media screen and (min-width: 620px) {
+  .info-item-wrap:hover .info-item,
+  .info-item:hover,
+  .info-ref:hover,
+  #info-passwd:hover {
+    color: crimson;
+  }
+
+  #info-btn:hover{
+    color: crimson;
+    border-color: crimson;
+    background: orange;
+  }
+
+}
+

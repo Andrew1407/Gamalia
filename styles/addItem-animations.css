@@ -1,0 +1,29 @@
+#main-item-name {
+  animation-name: nameShining;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes nameShining {
+  0%, 100% {
+    background: rgb(219, 170, 79);
+  }
+  50% {
+    background: brown;
+  }
+}
+
+@media screen and (min-width: 620px) {
+  .form-input-btn:hover {
+    color: crimson !important;
+    border-color: crimson !important;
+    background: orange !important;
+  }
+
+  .form-input input:hover {
+    border-color: rgb(42, 110, 165) !important;
+    background: orange !important;
+  }
+}
+

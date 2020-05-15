@@ -1,0 +1,46 @@
+body {
+  background: url("images/body-background-cat.png") rgb(212, 192, 147);
+  background-size: 6%;
+}
+
+#main-item {
+  background: rgb(255, 133, 172);
+  margin: 0 auto;
+  width: 40%;
+  min-height: 1026px;
+  padding: 2%;
+  border: 10px dashed rgb(56, 74, 88);
+}
+
+.form-input-btn {
+  text-decoration: none;
+}
+
+#main-item-name {
+  margin-bottom: 4%;
+}
+
+#output-image {
+  display: block;
+}
+
+@media screen and (max-width: 1600px) {
+  #main-item {
+    font-size: 100%;
+    width: 70%;
+  }
+
+  #main-item-name {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #main-item {
+    font-size: 80%;
+    width: 70%;
+  }
+  
+}
+
+

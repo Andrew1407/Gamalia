@@ -1,0 +1,20 @@
+#main-footer {
+  position: static;
+  bottom: 0 !important;
+  font-family: vallkorn;
+  background: url("images/footer-wood.jpg");
+  padding-top: 1%;
+  padding-right: 1%;
+  text-align: right;
+  font-size: 180%;
+  color: white;
+  margin-top: 3%;
+}
+
+#main-footer a{
+  color:white
+}
+
+#main-footer a:hover {
+  color: aqua;
+}

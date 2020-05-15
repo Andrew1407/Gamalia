@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  cursor: url("images/cursor.png") 20 10, default;
+}
+
+body {
+  opacity: 0;
+  background: url("images/body-background-creature2.png") rgb(212, 192, 147);
+  background-size: 5%;
+  font-family: fira;
+}
+
+#main-info {
+  background: rgb(152, 211, 238);
+  margin: 0 auto;
+  width: 40%;
+  min-height: 1026px;
+  padding: 2%;
+  border: 10px dashed rgb(61, 42, 165);
+}
+
+.main-info-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#main-info-name {
+  background-color: rgb(219, 170, 79);
+  padding: 0 1% 0 1%;
+  text-align: center;
+  font-size: 540%;
+  border: 7px dashed white;
+  opacity: 0.9;
+  width:40%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+#main-info-name a {
+  text-decoration: none;
+  color: white;
+}
+
+.form-header {
+  text-align: center;
+  margin: 2%;
+  border: 10px dotted rgb(61, 42, 165);
+  padding: 3%;
+  padding-right: 10%;
+  font-size: 430%;
+  background-color: rgb(0, 183, 255);
+  margin-top: 8%;
+}
+
+.user-info {
+  margin: 2%;
+  border: 10px dotted rgb(61, 42, 165);
+  padding: 3%;
+  font-size: 230%;
+  background-color: rgb(0, 183, 255);
+}
+
+.info-edit {
+  font-size: 80%;
+  font-family: vallkorn;
+  font-size: 80%;
+  width: 100%;
+  background-color: rgb(152, 211, 238);
+  border: 8px outset rgb(61, 42, 165);
+  display: none;
+}
+
+#info-btn {
+  display: none;
+  margin: 0 auto;
+  border: 6px outset brown;
+  padding: 1% 2% 1% 2%;
+  font-family: vallkorn;
+  background-color: rgb(219, 170, 79);
+  color: rgb(165, 79, 79);
+  margin-top: 3%;
+  font-size: 80%;
+
+}
+
+@media screen and (max-width: 1600px) {
+  #main-info {
+    font-size: 100%;
+    width: 70%;
+  }
+
+  #main-info-name {
+    width: 50%;
+  }
+}
+
+ul {
+  display: block;
+  /* list-style-image: url("images/creature.png"); */
+  /* list-style-image: url("images/creature.png"); */
+}
+
+.user-info-output {
+  display: block;
+}
+
+.info-ref {
+  text-decoration: none;
+  color: black;
+}
+
+.user-info-output {
+  border-bottom: 10px double rgb(61, 42, 165);;
+}
+
+.info-owned {
+  list-style-image: url("images/skull.png");
+}
+
+.info-ordered {
+  list-style-image: url("images/creature.png");
+}
+
+#info-passwd {
+  border-bottom: none;
+  margin-top: 8%;
+}
+
+
+@media screen and (max-width: 1100px) {
+  #info-btn {
+    font-size: 80%;
+    margin: 0 auto;
+    margin-top: 3%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #main-info {
+    font-size: 80%;
+    width: 70%;
+  }
+  
+}
+
+
+/* FONTS */
+
+@font-face {
+  font-family: fira;
+  src: url("fonts/FiraSansExtraCondensed-Black.ttf");
+}
+
+@font-face {
+  font-family: vallkorn;
+  src: url("fonts/Vollkorn-Black.ttf");
+}
+
+@font-face {
+  font-family: neucha;
+  src: url("fonts/Neucha-Regular.ttf");
+}

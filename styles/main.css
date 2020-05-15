@@ -129,14 +129,13 @@ body {
 
 #main-content {
   padding-top: 200px;
-  /* min-height: 1000px; */
+  min-height: 1000px;
 }
 
 #goods-area {
   display: flex;
-  align-items: stretch;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .goods {
@@ -151,6 +150,17 @@ body {
   border: 9px outset rgb(180, 105, 20);
   opacity: 0.9;
   display: block;
+  order: 1;
+}
+
+.goods-cart {
+  display:none;
+  margin: 3%;  
+  border: none;
+  background: url("images/cart1.png") no-repeat left center;
+  background-size: 43%;
+  padding: 9%;
+  width: 25%; 
 }
 
 .goods-image {
@@ -186,6 +196,32 @@ body {
 
 #main-footer a{
   color:white
+}
+
+.goods-ref {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-remove {
+  margin: 3%;  
+  border: none;
+  background: url("images/trash-bag.png") no-repeat left center;
+  background-size: 37%;
+  padding: 8%;
+  width: 25%;
+  display: none;
+}
+
+
+.a-rem {
+  margin: 3%;  
+  border: none;
+  background: url("images/trash-bag.png") no-repeat right center;
+  background-size: 37%;
+  padding: 9%;
+  width: 25%;
+  display: none;
 }
 
 /* display orientation */
@@ -264,6 +300,19 @@ body {
 
 /* mobile versions */
 @media screen and (max-width: 620px) {
+
+  .goods-remove {
+    display: inline-block;
+  }
+
+  .a-rem {
+    display: inline-block;
+  }
+
+  .goods-cart {
+    display: inline-block;
+  }
+
   #main-content {
     padding-top: 250px;
   }

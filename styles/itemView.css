@@ -1,0 +1,51 @@
+body {
+  opacity: 0;
+  background: url("images/body-background-vader.png") rgb(212, 192, 147);
+  background-size: 8%;
+  font-family: fira;
+}
+
+#main-item {
+  background: rgb(132, 132, 136);
+  margin: 0 auto;
+  width: 40%;
+  min-height: 1000px;
+  padding: 2%;
+  border: 10px dashed rgb(131, 6, 6);
+}
+
+#item-image, #item-description {
+  border-color: rgb(131, 6, 6);
+}
+
+#item-description {
+  font-size: 250%;
+}
+
+.item-description-type {
+  color: rgb(131, 6, 6);
+}
+
+
+@media screen and (max-width: 1400px) {
+  #main-item {
+    font-size: 100%;
+    width: 70%;
+  }
+
+  #main-item-name {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #main-item {
+    font-size: 80%;
+    width: 70%;
+  }
+
+  #main-item-name {
+    width: 50%;
+  }
+}
+

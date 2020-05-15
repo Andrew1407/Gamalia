@@ -19,9 +19,14 @@
 /* animations for desktop device */
 
 @media screen and (min-width: 620px) {
+
+.goods:hover .goods-cart {
+  display: block;
+}
+
 #main-footer a:hover {
   color: aqua;
-}  
+}
 
 .menu-dropdown-links:hover{
   color: crimson;
@@ -35,6 +40,19 @@
   #main-header-name:hover {
     opacity: 1;
   }  
+
+  .goods:hover .goods-remove {
+    display: inline-block;
+  }
+
+  .goods:hover .goods-remove {
+    display: inline-block;
+  }
+
+  .goods:hover .a-rem {
+    display: inline-block;
+  }
+
 }
 
 @media screen and (min-width: 1000px) {

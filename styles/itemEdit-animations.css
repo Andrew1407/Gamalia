@@ -1,0 +1,6 @@
+@media screen and (min-width: 620px) {
+  .form-input input:hover {
+    border-color: rgb(152, 50, 199) !important;
+    background: orange !important;
+  }
+}

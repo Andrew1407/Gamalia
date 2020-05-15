@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  cursor: url("images/cursor.png") 20 10, default;
+}
+
+body {
+  opacity: 0;
+  background: url("images/body-background-dragon.png") rgb(212, 192, 147);
+  background-size: 4%;
+  font-family: fira;
+}
+
+#main-item {
+  background: rgb(72, 255, 0);
+  margin: 0 auto;
+  width: 40%;
+  min-height: 1000px;
+  padding: 2%;
+  border: 10px dashed rgb(169, 67, 216);
+}
+
+#main-item-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main-item-name {
+  background-color: rgb(219, 170, 79);
+  padding: 0 1% 0 1%;
+  text-align: center;
+  font-size: 540%;
+  border: 7px dashed white;
+  opacity: 0.9;
+  width:40%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+#main-item-name a {
+  text-decoration: none;
+  color: white;
+
+}
+
+#item-image {
+  width: 60%;
+  height: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  border: 7px dashed rgb(169, 67, 216);
+}
+
+#item-description {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  padding: 0 1% 0  2%;
+  font-size: 200%;
+  border: 7px dashed rgb(169, 67, 216);
+  background-color: rgb(212, 192, 147);
+}
+
+#main-item-form input {
+  font-size: 80%;
+  font-family: vallkorn;
+  font-size: 180%;
+  margin: 2%;
+  width: 60%;
+  background-color: rgb(219, 170, 79);
+  border: 8px outset brown;  
+}
+
+#form-accept {
+  color: brown;
+}
+
+#form-cancel {
+  padding: 1% 2% 1% 2%;
+  font-family: vallkorn;
+  font-size: 170%;
+  background-color: rgb(219, 170, 79);
+  border: 6px outset brown;
+  color: brown;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1600px) {
+  #main-item {
+    font-size: 100%;
+    width: 70%;
+  }
+
+  #main-item-name {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #main-item {
+    font-size: 80%;
+    width: 70%;
+  }
+
+  #main-item-name {
+    width: 50%;
+  }
+}
+
+
+/* FONTS */
+
+@font-face {
+  font-family: fira;
+  src: url("fonts/FiraSansExtraCondensed-Black.ttf");
+}
+
+@font-face {
+  font-family: vallkorn;
+  src: url("fonts/Vollkorn-Black.ttf");
+}
+
+@font-face {
+  font-family: neucha;
+  src: url("fonts/Neucha-Regular.ttf");
+}
+
+

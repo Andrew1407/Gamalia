@@ -7,5 +7,6 @@ CREATE TABLE Customers (
   shop_id INT DEFAULT 1,
   phone_number VARCHAR(15) NOT NULL,
   reg_date DATETIME DEFAULT now(),
+  passwd VARCHAR(16) NOT NUll,
   PRIMARY KEY(id)
 );
