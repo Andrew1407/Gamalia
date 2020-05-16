@@ -3,7 +3,7 @@
     private $conn;
 
     function __construct() {
-      $this->conn = mysqli_connect("localhost", "Andrew", "649275", "ShopDB");
+      $this->conn = mysqli_connect('localhost', 'Andrew', '649275', 'ShopDB');
       mysqli_set_charset($this->conn, "utf8");
     }
 
@@ -26,6 +26,7 @@
       $query = "SELECT * FROM Goods WHERE id = $id;";
       $res = mysqli_query($this->conn, $query);
       [ $item ] = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
       return $item;
     }
 
@@ -33,10 +34,30 @@
       $query = "SELECT * FROM Goods WHERE owner_id = $ownerID;";
       $res = mysqli_query($this->conn, $query);
       $items = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
       return $items;
     }
 
+    public function isOwnedItem($itemID, $ownerID) {
+      $query = "SELECT id FROM Goods WHERE owner_id = $ownerID AND id = $itemID;";
+      $res = mysqli_query($this->conn, $query);
+      $orders = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
+      return !empty($orders);
+    }
+
+    public function isOrdered($orderID, $ownerID) {
+      $query = "SELECT id FROM Orders WHERE person_id = $ownerID AND id = $orderID;";
+      $res = mysqli_query($this->conn, $query);
+      $cart = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
+      return !empty($cart);
+    }
+
     public function addItem($name, $price, $categories, $imgPath, $discount, $owner_id) {
+      $name = mysqli_real_escape_string($this->conn, $name);
+      $categories = mysqli_real_escape_string($this->conn, $categories);
+      $imgPath = mysqli_real_escape_string($this->conn, $imgPath);
       $addQuery = "INSERT INTO Goods (item_name, price, categories, item_image, discount, owner_id) VALUES ('$name', $price, '$categories', '$imgPath', $discount, $owner_id);";
       mysqli_query($this->conn, $addQuery);
       $itemID = mysqli_insert_id($this->conn);
@@ -62,6 +83,7 @@
 
 
     private function insertOrder($dest, $personID) {
+      $dest = mysqli_real_escape_string($this->conn, $dest);
       $addOrder = "INSERT INTO Orders (dest, person_id) VALUES ('$dest', $personID);";
       mysqli_query($this->conn, $addOrder);
       $orderID = mysqli_insert_id($this->conn);
@@ -93,6 +115,7 @@
     }
 
     public function insertCartTemp($personID, $itemID, $dest, $quantity) {
+      $dest = mysqli_real_escape_string($this->conn, $dest);
       $query = "INSERT INTO CartTemp (person_id, item_id, dest, quantity) VALUES ($personID, $itemID, '$dest', $quantity);";
       return mysqli_query($this->conn, $query);
     }
@@ -121,6 +144,22 @@
       [ $order ] = mysqli_fetch_all($res, MYSQLI_ASSOC);
       mysqli_free_result($res);
       return $order;
+    }
+
+    public function isInCartTemp($cartID) {
+      $query = "SELECT id FROM CartTemp WHERE id = $cartID;";
+      $res = mysqli_query($this->conn, $query);
+      $cart = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
+      return !empty($cart);
+    }
+
+    public function isOrderPresentInCart($orderID) {
+      $query = "SELECT order_id FROM CustomersCart WHERE order_id = $orderID;";
+      $res = mysqli_query($this->conn, $query);
+      $order = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      mysqli_free_result($res);
+      return !empty($order);
     }
 
     function __destruct() {

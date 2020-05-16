@@ -2,29 +2,51 @@
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
 
-  if (isset($_POST['itemUpdate'])) {
-    $item = $shop->getItem($_GET['uptID']);
-    $changed = [];
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
 
-    if (!empty($_POST['itemName']) && $_POST['itemName'] !== $item['item_name'])
-      $changed['item_name'] = $_POST['itemName'];
-    if (!empty($_POST['price']) && $_POST['price'] !== $item['price'])
-      $changed['price'] = $_POST['price'];
-    if (!empty($_POST['categories']) && $_POST['categories'] !== $item['categories'])
-      $changed['categories'] = $_GET['categories'];
-    if (!empty($_POST['discount']) && $_POST['discount'] !== $item['discount'])
-      $changed['discount'] = $_POST['discount'];
-    if (!empty($_FILES['pic']['name']) && ('images_goods/' . $_FILES['pic']['name']) !== $item['item_image']) {
-      $changed['item_image'] = 'images_goods/' . $_FILES['pic']['name'];
-      unlink($item['item_image']);
-      $imageTemp = $_FILES['pic']['tmp_name'];
-      move_uploaded_file($imageTemp, $changed['item_image']);
+  if (isset($_POST['itemUpdate'])) {
+    $itemNameRegex = '/^.{1,40}$/';
+    $priceRegex = '/^\d{1,11}(\.\d{1,2})?$/';
+    $categoriesRegex = '/^[#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
+    $discountRegex = '/^\d{1,2}(\.\d{1,2})?$/';
+    $itemNameTest = preg_match($itemNameRegex, $_POST['itemName']);
+    $priceTest = preg_match($priceRegex, $_POST['price']);
+    $categoriesTest = preg_match($categoriesRegex, $_POST['categories']);
+    $discountTest = preg_match($discountRegex, $_POST['discount']);
+    if (!$itemNameTest || !$priceTest ||
+      !$categoriesTest || !$discountTest &&
+      !empty($_POST['discount'])) {
+        header('Location: err.php?msg=1');
+    } else {
+      $item = $shop->getItem($_GET['uptID']);
+      $changed = [];
+
+      if (!empty($_POST['itemName']) && $_POST['itemName'] !== $item['item_name'])
+        $changed['item_name'] = $_POST['itemName'];
+      if (!empty($_POST['price']) && $_POST['price'] !== $item['price'])
+        $changed['price'] = $_POST['price'];
+      if (!empty($_POST['categories']) && $_POST['categories'] !== $item['categories'])
+        $changed['categories'] = $_POST['categories'];
+      if (!empty($_POST['discount']) && $_POST['discount'] !== $item['discount'])
+        $changed['discount'] = $_POST['discount'];
+      if (!empty($_FILES['pic']['name']) && ('images_goods/' . $_FILES['pic']['name']) !== $item['item_image']) {
+        $changed['item_image'] = 'images_goods/' . $_FILES['pic']['name'];
+        unlink($item['item_image']);
+        $imageTemp = $_FILES['pic']['tmp_name'];
+        move_uploaded_file($imageTemp, $changed['item_image']);
+      }
     }
 
     $shop->updateItem($_GET['uptID'], $changed);
     header('Location: info.php');
   } elseif (isset($_GET['id'])) {
-    $item = $shop->getItem($_GET['id']);
+    if($shop->isOwnedItem($_GET['id'], $_SESSION['id']))
+      $item = $shop->getItem($_GET['id']);
+    else
+      header('Location: err.php?msg=3');
+  } else {
+    header('Location: err.php?msg=8');
   }
 
 ?>
@@ -89,7 +111,7 @@
         </div>
 
         <input type="submit" name="itemUpdate" value="Внести зміни" class="form-input-btn">
-        <a href="main.php" id="form-cancel" class="form-input-btn">До персональних даних</a>
+        <a href="info.php" id="form-cancel" class="form-input-btn">До персональних даних</a>
 
       </form>
     </div>

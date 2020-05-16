@@ -3,13 +3,16 @@
   session_start();
   if (isset($_GET['rmID'])) {
     $rmItem = $shop->getItem($_GET['rmID']);
-    if ($rmItem['owner_id'] != $_SESSION['id']) {
-      header('Location: err.php?msg=2');
-    } else {
-      unlink($rmItem['item_image']);
-      $shop->rmItem($_GET['rmID']);
-      header('Location: main.php');
-    }
+    if(empty($rmItem))
+      header('Location: err.php?msg=0');
+    else
+      if ($rmItem['owner_id'] != $_SESSION['id']) {
+        header('Location: err.php?msg=2');
+      } else {
+        unlink($rmItem['item_image']);
+        $shop->rmItem($_GET['rmID']);
+        header('Location: main.php');
+      }
   }
 
   // get all available goods

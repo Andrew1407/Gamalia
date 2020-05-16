@@ -1,11 +1,12 @@
 <?php
+  header('Content-Type: text/html; charset=utf-8');
   require_once('DB_connection/CustomersDB.connection.php');
   session_start();
   $customerID = -1;
   
   if (isset($_POST['sign-up'])) {
     $emailRegex = '/^([a-z_\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})*$/';
-    $initialsRegex = '/^[А-ЯҐЄІЇA-Z][\'а-яґєіїa-z]{1,19}(-[А-ЯҐЄІЇA-Z][\'а-яґєіїa-z]{1,19})* [А-ЯҐЄІЇA-Z][\'а-яґєіїa-z]{1,19}(-[А-ЯҐЄІЇA-Z][\'а-яґєіїa-z]{1,19})*$/';
+    $initialsRegex = "/^[А-ЯҐЄІЇA-Z]['а-яґєіїa-z]{1,19}(-[А-ЯҐЄІЇA-Z]['а-яґєіїa-z]{1,19})* [А-ЯҐЄІЇA-Z]['а-яґєіїa-z]{1,19}(-[А-ЯҐЄІЇA-Z]['а-яґєіїa-z]{1,19})*$/u";
     $phoneRegex = '/^\+?[\d]{6,12}$/';
     $passwdRegex = '/^.{5,16}$/';
     $emailTest = preg_match($emailRegex, $_POST['email']);

@@ -2,6 +2,11 @@
   require_once('DB_connection/CustomersDB.connection.php');
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
+
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
+
+
   $userID = $_SESSION['id'];
   if (isset($_POST['acceptChanges'])) {
     $userChanged = json_decode($_POST['infoChanged'], true);
@@ -104,7 +109,7 @@
                     <li class="info-item">
                       <span id="user-info-output">
                         <a class="info-ref" href="itemView.php?id=<?php echo $order['order_id']; ?>">
-                          <?php echo htmlspecialchars(explode(' ', $order['order_date'])[0]) . " (" . htmlspecialchars($order['dest']) . ")";?>
+                          <?php echo htmlspecialchars($order['order_date']) . " (" . htmlspecialchars($order['dest']) . ")";?>
                         </a>
                       </span>
                     </li>

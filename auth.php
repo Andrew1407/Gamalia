@@ -1,6 +1,9 @@
 <?php
   require_once('DB_connection/CustomersDB.connection.php');
   session_start();
+
+  unset($_SESSION['id']);
+
   if (isset($_POST['sign-up'])) {
     $emailRegex = '/^([a-z_\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})*$/';
     $passwdRegex = '/^.{5,16}$/';
@@ -16,7 +19,7 @@
     if ($customerID != -1)
       header('Location: main.php');
     else
-      header('Location: err.php?err=1');
+      header('Location: err.php?msg=1');
   }
 
 ?>

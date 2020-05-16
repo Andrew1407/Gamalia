@@ -1,35 +1,42 @@
 <?php
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
+
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
+
+
   if (isset($_POST['addItem'])) {
-    $itemNameRegex = '/^.{1,40}$/';
-    $priceRegex = '/^\d{1,6}(\.\d{1,2})?$/';
-    $categoriesRegex = '/^[\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z ]{1,18}(, [\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z ]{1,18})*$/';
+    $itemNameRegex = '/^.{1,40}$/u';
+    $priceRegex = '/^\d{1,11}(\.\d{1,2})?$/';
+    $categoriesRegex = '/^[#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
     $discountRegex = '/^\d{1,2}(\.\d{1,2})?$/';
     $itemNameTest = preg_match($itemNameRegex, $_POST['itemName']);
-    $priceTest = preg_match($priceTest, $_POST['price']);
+    $priceTest = preg_match($priceRegex, $_POST['price']);
     $categoriesTest = preg_match($categoriesRegex, $_POST['categories']);
     $discountTest = preg_match($discountRegex, $_POST['discount']);
     if (!$itemNameTest || !$priceTest ||
       !$categoriesTest || !$discountTest &&
       !empty($_POST['discount']) || empty($_FILES['pic']['name'])) {
-        header('Location: err.php?msg=1');
+        echo $itemNameTest;
+        // header('Location: err.php?msg=1');
+    } else {
+      $discount = empty(!$_POST['discount']) ? $_POST['discount'] : 0;
+      $imageName = $_FILES['pic']['name'];
+      $imageTemp = $_FILES['pic']['tmp_name'];
+      $imagePath = "images_goods/$imageName";
+      move_uploaded_file($imageTemp, $imagePath);
+      $itemArgs = [
+        $_POST['itemName'], 
+        $_POST['price'], 
+        $_POST['categories'],
+        $imagePath, 
+        $discount,
+        $_SESSION['id']
+      ];
+      $shop->addItem(...$itemArgs);
+      header('Location: main.php');
     }
-    $discount = empty(!$_POST['discount']) ? $_POST['discount'] : 0;
-    $imageName = $_FILES['pic']['name'];
-    $imageTemp = $_FILES['pic']['tmp_name'];
-    $imagePath = "images_goods/$imageName";
-    move_uploaded_file($imageTemp, $imagePath);
-    $itemArgs = [
-      $_POST['itemName'], 
-      $_POST['price'], 
-      $_POST['categories'],
-      $imagePath, 
-      $discount,
-      $_SESSION['id']
-    ];
-    $shop->addItem(...$itemArgs);
-    header('Location: main.php');
   }
 ?>
 

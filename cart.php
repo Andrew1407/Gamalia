@@ -2,9 +2,16 @@
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
 
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
+
   if (isset($_GET['rmID'])) {
-    $shop->rmCartTempByID($_GET['rmID']);
-    header('Location: cart.php');
+    if ($shop->isInCartTemp($_GET['rmID'])) {
+      $shop->rmCartTempByID($_GET['rmID']);
+      header('Location: cart.php');
+    } else {
+      header('Location: err.php?msg=6');
+    }
   } elseif (isset($_POST['acceptOrder'])) {
     $items = $shop->getCartTemp($_SESSION['id']);
     foreach ($items as $item)

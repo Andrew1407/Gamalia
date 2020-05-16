@@ -2,24 +2,28 @@
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
   $item = $shop->getItem($_GET['id']);
-
-  if (empty($item))
-    header('Location: err.php?msg=0');
+  
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
+  else
+    if (empty($item))
+      header('Location: err.php?msg=0');
 
   if (isset($_POST['acceptOrder'])) {
     $testQuantity = preg_match('/^[\d]{1,10}$/', $_POST['quantity']);
-    $testDest = preg_match('/^.{1,80}$/', $_POST['dest']);
-    if (!$testQuantity || !$testDest)
-      header('Location: err.php?msg=0');
-      
-    $queryArgs = [
-      $_SESSION['id'],
-      $_GET['id'],
-      $_POST['destination'],
-      $_POST['quantity']
-    ];
-    $shop->insertCartTemp(...$queryArgs);
-    // header('Location: cart.php');
+    $testDest = preg_match('/^.{1,80}$/', $_POST['destination']);
+    if (!$testQuantity || !$testDest) {
+      header('Location: err.php?msg=1');
+    } else {
+      $queryArgs = [
+        $_SESSION['id'],
+        $_GET['id'],
+        $_POST['destination'],
+        $_POST['quantity']
+      ];
+      $shop->insertCartTemp(...$queryArgs);
+      header('Location: cart.php');
+    }
   }
 ?>
 

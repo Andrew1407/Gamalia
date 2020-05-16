@@ -4,7 +4,7 @@ CREATE TABLE Goods (
   id INT AUTO_INCREMENT,
   item_name VARCHAR(40) NOT NULL,
   categories VARCHAR(40) NOT NULL,
-  price DECIMAL(8, 2) NOT NULL,
+  price DECIMAL(13, 2) NOT NULL,
   item_image VARCHAR(80) NOT NULL,
   discount DECIMAL(4, 2) DEFAULT 0,
   owner_id INT NOT NULL,

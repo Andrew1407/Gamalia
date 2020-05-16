@@ -3,11 +3,15 @@
     private $conn;
 
     function __construct() {
-      $this->conn = mysqli_connect("localhost", "Andrew", "649275", "CustomersDB");
+      $this->conn = mysqli_connect('localhost', 'Andrew', '649275', 'CustomersDB');
       mysqli_set_charset($this->conn, "utf8");
     }
 
     public function addCustomer($email, $initials, $phone, $passwd) {
+      $email = mysqli_real_escape_string($this->conn, $email);
+      $initials = mysqli_real_escape_string($this->conn, $initials);
+      $phone = mysqli_real_escape_string($this->conn, $phone);
+      $passwd = mysqli_real_escape_string($this->conn, $passwd);
       $addQuery = "INSERT INTO Customers (email, initials, phone_number, passwd) VALUES ('$email', '$initials', '$phone', '$passwd');";
       mysqli_query($this->conn, $addQuery);
       $customerID = mysqli_insert_id($this->conn);

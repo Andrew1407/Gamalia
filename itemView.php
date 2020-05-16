@@ -1,7 +1,23 @@
 <?php
   require_once('DB_connection/ShopDB.connection.php');
   session_start();
-  $item = $shop->getCartByOrderID($_GET['id']);
+
+  if(!isset($_SESSION['id']))
+    header('Location: err.php?msg=7');
+
+  if (isset($_GET['id'])) {
+    if ($shop->isOrdered($_GET['id'], $_SESSION['id']))
+      if($shop->isOrderPresentInCart($_GET['id'])) {
+        $item = $shop->getCartByOrderID($_GET['id']);
+      } else {
+        $shop->rmOrder($_GET['id']);
+        header('Location: err.php?msg=5');
+      }
+    else
+      header('Location: err.php?msg=4');
+  } else {
+    header('Location: err.php?msg=8');
+  }
 ?>
 
 <!DOCTYPE html>
