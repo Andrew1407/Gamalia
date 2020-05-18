@@ -20,16 +20,16 @@
 
   // pop-up menu references in header
   $puMenu = array (
-    'cart' => 'reg.php',
-    'info' => 'reg.php',
-    'addItem' => 'reg.php'
+    'cart' => 'auth.php',
+    'info' => 'auth.php',
+    'addItem' => 'auth.php'
   );
   if (isset($_SESSION['id'])) {
     $puMenu['cart'] = 'cart.php';
     $puMenu['info'] = 'info.php';
     $puMenu['addItem'] = 'addItem.php';
   } else {
-    $puMenu['cart'] = $puMenu['info'] = $puMenu['addItem'] = 'reg.php';
+    $puMenu['cart'] = $puMenu['info'] = $puMenu['addItem'] = 'auth.php';
   }
 
 

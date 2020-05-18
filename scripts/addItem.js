@@ -16,7 +16,7 @@ $("#input-image").change(function() {
 const patterns = {
   itemName: /^.{1,40}$/,
   price: /^\d{1,11}(\.\d{1,2})?$/,
-  categories: /^[#\"\'А-ЯҐЄІЇA-Z'а-яґєіїa-z\d ]{1,18}(, [#\"\'А-ЯҐЄІЇA-Z'а-яґєіїa-z\d ]{1,18})*$/,
+  categories: /^[\.#\"\'А-ЯҐЄІЇA-Z'а-яґєіїa-z\d ]{1,18}(, [\.#\"\'А-ЯҐЄІЇA-Z'а-яґєіїa-z\d ]{1,18})*$/,
   discount: /^\d{1,2}(\.\d{1,2})?$/
 };
 
@@ -27,6 +27,6 @@ $(".field").each(function() {
     matchedStyle.borderColor = isMatched ? "rgb(42, 110, 165)" : "crimson";
     $(this).css(matchedStyle)
       .parent()
-      .css(matchedStyle);;
+      .css(matchedStyle);
   });
 });

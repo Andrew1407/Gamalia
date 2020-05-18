@@ -6,40 +6,44 @@
     header('Location: err.php?msg=7');
 
   if (isset($_POST['itemUpdate'])) {
+    $item = $shop->getItem($_GET['uptID']);
     $itemNameRegex = '/^.{1,40}$/';
     $priceRegex = '/^\d{1,11}(\.\d{1,2})?$/';
-    $categoriesRegex = '/^[#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
+    $categoriesRegex = '/^[\.#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [\.#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
     $discountRegex = '/^\d{1,2}(\.\d{1,2})?$/';
+    $imagePathRegex = '/^.{16,180}$/';
     $itemNameTest = preg_match($itemNameRegex, $_POST['itemName']);
     $priceTest = preg_match($priceRegex, $_POST['price']);
     $categoriesTest = preg_match($categoriesRegex, $_POST['categories']);
     $discountTest = preg_match($discountRegex, $_POST['discount']);
+    $imagePathTest = preg_match($imagePathRegex, $_FILES['pic']['name']);
     if (!$itemNameTest || !$priceTest ||
       !$categoriesTest || !$discountTest &&
-      !empty($_POST['discount'])) {
+      !empty($_POST['discount']) || !$imagePathRegex &&
+      !empty($_FILES['pic']['name']) &&
+      ('images_goods/' . $_FILES['pic']['name']) != $item['item_image']) {
         header('Location: err.php?msg=1');
     } else {
-      $item = $shop->getItem($_GET['uptID']);
       $changed = [];
 
-      if (!empty($_POST['itemName']) && $_POST['itemName'] !== $item['item_name'])
+      if (!empty($_POST['itemName']) && $_POST['itemName'] != $item['item_name'])
         $changed['item_name'] = $_POST['itemName'];
-      if (!empty($_POST['price']) && $_POST['price'] !== $item['price'])
+      if (!empty($_POST['price']) && $_POST['price'] != $item['price'])
         $changed['price'] = $_POST['price'];
-      if (!empty($_POST['categories']) && $_POST['categories'] !== $item['categories'])
+      if (!empty($_POST['categories']) && $_POST['categories'] != $item['categories'])
         $changed['categories'] = $_POST['categories'];
-      if (!empty($_POST['discount']) && $_POST['discount'] !== $item['discount'])
+      if (!empty($_POST['discount']) && $_POST['discount'] != $item['discount'])
         $changed['discount'] = $_POST['discount'];
-      if (!empty($_FILES['pic']['name']) && ('images_goods/' . $_FILES['pic']['name']) !== $item['item_image']) {
+      if (!empty($_FILES['pic']['name']) && ('images_goods/' . $_FILES['pic']['name']) != $item['item_image']) {
         $changed['item_image'] = 'images_goods/' . $_FILES['pic']['name'];
         unlink($item['item_image']);
         $imageTemp = $_FILES['pic']['tmp_name'];
         move_uploaded_file($imageTemp, $changed['item_image']);
       }
+      
+      $shop->updateItem($_GET['uptID'], $changed);
+      header('Location: info.php');
     }
-
-    $shop->updateItem($_GET['uptID'], $changed);
-    header('Location: info.php');
   } elseif (isset($_GET['id'])) {
     if($shop->isOwnedItem($_GET['id'], $_SESSION['id']))
       $item = $shop->getItem($_GET['id']);

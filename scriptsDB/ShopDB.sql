@@ -5,7 +5,7 @@ CREATE TABLE Goods (
   item_name VARCHAR(40) NOT NULL,
   categories VARCHAR(40) NOT NULL,
   price DECIMAL(13, 2) NOT NULL,
-  item_image VARCHAR(80) NOT NULL,
+  item_image VARCHAR(180) NOT NULL,
   discount DECIMAL(4, 2) DEFAULT 0,
   owner_id INT NOT NULL,
   FOREIGN KEY(owner_id)

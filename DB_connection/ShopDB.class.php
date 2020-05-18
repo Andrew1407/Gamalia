@@ -73,11 +73,12 @@
       $changedKeys = array_keys($changed);
       $querySet = [];
       foreach ($changedKeys as $key) {
-        $value = $changed[$key];
+        $value = mysqli_real_escape_string($this->conn, $changed[$key]);
         $querySet[] = "$key = '$value'";
       }
       $querySetStr = implode(', ', $querySet);
       $updateQuery = "UPDATE Goods SET $querySetStr WHERE id = $itemID;";
+      echo $updateQuery;
       return mysqli_query($this->conn, $updateQuery);
     }
 

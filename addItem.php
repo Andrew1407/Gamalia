@@ -5,11 +5,10 @@
   if(!isset($_SESSION['id']))
     header('Location: err.php?msg=7');
 
-
   if (isset($_POST['addItem'])) {
     $itemNameRegex = '/^.{1,40}$/u';
     $priceRegex = '/^\d{1,11}(\.\d{1,2})?$/';
-    $categoriesRegex = '/^[#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
+    $categoriesRegex = '/^[\.#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18}(, [\.#\"\'А-ЯҐЄІЇA-Z\'а-яґєіїa-z\d ]{1,18})*$/u';
     $discountRegex = '/^\d{1,2}(\.\d{1,2})?$/';
     $itemNameTest = preg_match($itemNameRegex, $_POST['itemName']);
     $priceTest = preg_match($priceRegex, $_POST['price']);
@@ -18,8 +17,7 @@
     if (!$itemNameTest || !$priceTest ||
       !$categoriesTest || !$discountTest &&
       !empty($_POST['discount']) || empty($_FILES['pic']['name'])) {
-        echo $itemNameTest;
-        // header('Location: err.php?msg=1');
+        header('Location: err.php?msg=1');
     } else {
       $discount = empty(!$_POST['discount']) ? $_POST['discount'] : 0;
       $imageName = $_FILES['pic']['name'];
